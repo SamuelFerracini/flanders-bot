@@ -1,22 +1,12 @@
 import * as dotenv from "dotenv";
+import Core from "./src/core.js";
+
 dotenv.config();
 
-import Discord from "discord.js";
+async function main() {
+  Core.setup();
 
-const client = new Discord.Client({
-  intents: ["GuildVoiceStates"],
-});
+  await Core.loop();
+}
 
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
-
-client.on("voiceStateUpdate", (oldState, newState) => {
-  if (newState.member.user.bot) return;
-
-  const { user } = newState.member;
-
-  console.log(user);
-});
-
-client.login(process.env.CLIENT_TOKEN);
+main();
