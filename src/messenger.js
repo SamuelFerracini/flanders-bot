@@ -8,7 +8,7 @@ class Messenger {
     (user) =>
       `Alguém viu o ${user}? :eyes: Já faz um tempo que ele não aparece. :sob:`,
     (user) =>
-      `Ainda não há relatos sobre o :comet: ${user} ter passado pelo grupo nesses dias... :satellite:`,
+      `Ainda não há relatos sobre o :comet: ${user} ter passado pelo grupo esses dias... :satellite:`,
     (user) =>
       `Estamos com saúdades de você ${user}. :sob: :point_right: :heart:`,
     (user) => `RIP ${user} :dizzy_face:`,

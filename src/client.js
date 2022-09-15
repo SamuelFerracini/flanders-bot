@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 
 import Discord from "discord.js";
 
-import { timeout } from "./utils.js";
 import Messenger from "./messenger.js";
 
 class Client {
@@ -62,21 +61,15 @@ class Client {
   hasExpired(date) {
     if (!date) return true;
 
-    const timeToExpire = dayjs(date).add(this.intervalMilisecs, "milliseconds");
+    const timeToExpire = dayjs(date).add(4, "hours");
 
-    const now = new Date();
-
-    const hasExpired = !dayjs(now).isBefore(timeToExpire);
-
-    return hasExpired;
+    return !dayjs(new Date()).isBefore(timeToExpire);
   }
 
   async checkUsersActivity() {
     const inactiveUsers = this.targetUsers.filter((e) =>
       this.hasExpired(e.lastActivity)
     );
-
-    console.log("Usuários inativos: ", inactiveUsers);
 
     await Promise.all(
       inactiveUsers.map(async (u) => {
@@ -85,18 +78,6 @@ class Client {
         this.sendMissingMessage(discordUser);
       })
     );
-  }
-
-  async execute() {
-    const interval = +process.env.LOOP_INTERVAL_SEC || 12 * 60 * 60;
-
-    this.intervalMilisecs = interval * 1000;
-
-    await timeout(this.intervalMilisecs);
-
-    await this.checkUsersActivity();
-
-    await this.execute();
   }
 }
 
