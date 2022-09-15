@@ -62,7 +62,7 @@ class Client {
   hasExpired(date) {
     if (!date) return true;
 
-    const timeToExpire = dayjs(date).add(12, "hours");
+    const timeToExpire = dayjs(date).add(this.intervalMilisecs, "milliseconds");
 
     const now = new Date();
 
@@ -76,6 +76,8 @@ class Client {
       this.hasExpired(e.lastActivity)
     );
 
+    console.log("Usuários inativos: ", inactiveUsers);
+
     await Promise.all(
       inactiveUsers.map(async (u) => {
         const discordUser = await this.client.users.fetch(u.id);
@@ -88,11 +90,9 @@ class Client {
   async execute() {
     const interval = +process.env.LOOP_INTERVAL_SEC || 12 * 60 * 60;
 
-    const intervalMilisecs = interval * 1000;
+    this.intervalMilisecs = interval * 1000;
 
-    console.log("intervalMilisecs: ", intervalMilisecs);
-
-    await timeout(intervalMilisecs);
+    await timeout(this.intervalMilisecs);
 
     await this.checkUsersActivity();
 

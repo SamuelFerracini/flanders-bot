@@ -26,7 +26,11 @@ class Messenger {
     const randomMessage =
       this._messages[Math.floor(Math.random() * this._messages.length)];
 
-    channel.send(randomMessage(user.toString()));
+    const message = randomMessage(user.toString());
+
+    console.log("Enviando mensagem: ", message);
+
+    channel.send(message);
   }
 }
 
