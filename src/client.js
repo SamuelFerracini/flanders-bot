@@ -36,7 +36,7 @@ class Client {
 
     const idx = this.targetUsers.findIndex((tu) => tu.id === user.id);
 
-    if (idx === -1) return console.log("User not found");
+    if (idx === -1) return;
 
     Object.assign(this.targetUsers[idx], {
       lastActivity: new Date(),
@@ -92,9 +92,11 @@ class Client {
 
     console.log("intervalMilisecs: ", intervalMilisecs);
 
-    setInterval(() => {
-      this.checkUsersActivity();
-    }, intervalMilisecs);
+    await timeout(intervalMilisecs);
+
+    await this.checkUsersActivity();
+
+    await this.execute();
   }
 }
 
