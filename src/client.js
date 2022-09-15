@@ -86,9 +86,15 @@ class Client {
   }
 
   async execute() {
+    const interval = +process.env.LOOP_INTERVAL_SEC || 12 * 60 * 60;
+
+    const intervalMilisecs = interval * 1000;
+
+    console.log("intervalMilisecs: ", intervalMilisecs);
+
     setInterval(() => {
       this.checkUsersActivity();
-    }, +process.env.LOOP_INTERVAL || 12 * 60 * 60);
+    }, intervalMilisecs);
   }
 }
 
