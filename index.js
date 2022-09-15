@@ -1,12 +1,12 @@
 import * as dotenv from "dotenv";
-import Core from "./src/core.js";
+import Client from "./src/client.js";
 
 dotenv.config();
 
 async function main() {
-  Core.setup();
+  Client.setup();
 
-  await Core.loop();
+  await Client.execute();
 }
 
 main();

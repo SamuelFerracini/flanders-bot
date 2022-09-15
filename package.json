@@ -8,6 +8,7 @@
     "dev": "node index.js"
   },
   "dependencies": {
+    "dayjs": "^1.11.5",
     "discord.js": "^14.3.0",
     "dotenv": "^16.0.2"
   }

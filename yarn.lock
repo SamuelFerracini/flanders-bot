@@ -66,6 +66,11 @@
   dependencies:
     "@types/node" "*"
 
+dayjs@^1.11.5:
+  version "1.11.5"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.5.tgz#00e8cc627f231f9499c19b38af49f56dc0ac5e93"
+  integrity sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==
+
 discord-api-types@^0.37.3:
   version "0.37.9"
   resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.9.tgz#3ceba0f047c5239967c50b180fe9d72c55c82464"
